@@ -3,9 +3,8 @@ register()
 
 import { Image, Link } from '@shopify/hydrogen';
 
-
 export default function SwiperBanner({data}){
-
+    
     return(
         <swiper-container
             slidesPerView="1"

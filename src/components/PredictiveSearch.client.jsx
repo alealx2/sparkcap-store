@@ -14,11 +14,12 @@ const PredictiveSearch = () => {
 
     // Make a request to Shopify Storefront API
     try {
-      const response = await fetch('https://hydrogen-preview.myshopify.com/api/graphql', {
+      //Demo: 'https://hydrogen-preview.myshopify.com/api/graphql'
+      const response = await fetch('https://0134e1-de.myshopify.com/api/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Shopify-Storefront-Access-Token': '3b580e70970c4528da70c98e097c2fa0',
+          'X-Shopify-Storefront-Access-Token': 'cedee87268c0073d714c5baff1f550f4',//Demo: '3b580e70970c4528da70c98e097c2fa0',
         },
         body: JSON.stringify({
           query: `
