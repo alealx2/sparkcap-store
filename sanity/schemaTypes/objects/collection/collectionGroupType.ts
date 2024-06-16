@@ -3,7 +3,7 @@ import {defineField} from 'sanity'
 
 export const collectionGroupType = defineField({
   name: 'collectionGroup',
-  title: 'Collection group',
+  title: 'Collection',
   type: 'object',
   icon: PackageIcon,
   fields: [

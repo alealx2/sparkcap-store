@@ -90,13 +90,16 @@ import {portableTextSimpleType} from './portableText/portableTextSimpleType'
 
 const blocks = [portableTextType, portableTextSimpleType]
 
+import {megaMenuType} from './documents/megaMenu'
+import {footerMenuType} from './documents/footerMenu'
 import {collectionType} from './documents/collection'
 import {colorThemeType} from './documents/colorTheme'
 import {pageType} from './documents/page'
+import {blogType} from './documents/blog'
 import {productType} from './documents/product'
 import {productVariantType} from './documents/productVariant'
 
-const documents = [collectionType, colorThemeType, pageType, productType, productVariantType]
+const documents = [megaMenuType, footerMenuType, collectionType, colorThemeType, pageType, blogType, productType, productVariantType]
 
 import {homeType} from './singletons/homeType'
 import {settingsType} from './singletons/settingsType'

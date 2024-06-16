@@ -12,12 +12,12 @@ export const settingsType = defineType({
   type: 'document',
   icon: CogIcon,
   groups: [
-    {
-      default: true,
-      name: 'navigation',
-      title: 'Navigation',
-      icon: MenuIcon,
-    },
+    // {
+    //   default: true,
+    //   name: 'navigation',
+    //   title: 'Navigation',
+    //   icon: MenuIcon,
+    // },
     {
       name: 'productOptions',
       title: 'Product options',
@@ -35,16 +35,16 @@ export const settingsType = defineType({
     },
   ],
   fields: [
-    defineField({
-      name: 'menu',
-      type: 'menu',
-      group: 'navigation',
-    }),
-    defineField({
-      name: 'footer',
-      type: 'footerSettings',
-      group: 'navigation',
-    }),
+    // defineField({
+    //   name: 'menu',
+    //   type: 'menu',
+    //   group: 'navigation',
+    // }),
+    // defineField({
+    //   name: 'footer',
+    //   type: 'footerSettings',
+    //   group: 'navigation',
+    // }),
     defineField({
       name: 'customProductOptions',
       type: 'array',

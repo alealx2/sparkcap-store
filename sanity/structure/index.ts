@@ -1,8 +1,11 @@
 import {ListItemBuilder, StructureResolver} from 'sanity/structure';
 import collections from './collectionStructure'
 import colorThemes from './colorThemeStructure'
+import megaMenu from './megaMenuStructure'
+import footerMenu from './footerMenuStructure'
 import home from './homeStructure'
 import pages from './pageStructure'
+import blog from './blogStructure'
 import products from './productStructure'
 import settings from './settingStructure'
 
@@ -30,9 +33,12 @@ const hiddenDocTypes = (listItem: ListItemBuilder) => {
   return ![
     'collection',
     'colorTheme',
+    'megaMenu',
+    'footerMenu',
     'home',
     'media.tag',
     'page',
+    'blog',
     'product',
     'productVariant',
     'settings',
@@ -43,8 +49,12 @@ export const structure: StructureResolver = (S, context) =>
   S.list()
     .title('Content')
     .items([
+      megaMenu(S, context),
+      footerMenu(S, context),
+      S.divider(),
       home(S, context),
       pages(S, context),
+      blog(S, context),
       S.divider(),
       collections(S, context),
       products(S, context),
