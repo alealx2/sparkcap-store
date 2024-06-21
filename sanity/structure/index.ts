@@ -8,6 +8,7 @@ import pages from './pageStructure'
 import blog from './blogStructure'
 import products from './productStructure'
 import settings from './settingStructure'
+import storeInfo from './storeInfoStructure'
 
 /**
  * Structure overrides
@@ -42,6 +43,7 @@ const hiddenDocTypes = (listItem: ListItemBuilder) => {
     'product',
     'productVariant',
     'settings',
+    'storeInfo',
   ].includes(id)
 }
 
@@ -62,6 +64,7 @@ export const structure: StructureResolver = (S, context) =>
       colorThemes(S, context),
       S.divider(),
       settings(S, context),
+      storeInfo(S, context),
       S.divider(),
       ...S.documentTypeListItems().filter(hiddenDocTypes),
     ])
