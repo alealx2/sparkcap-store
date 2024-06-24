@@ -25,7 +25,7 @@
 
     /* General */
     .container {
-        @apply px-10 mx-0;
+        @apply px-10 m-auto max-w-[1780px];
     }    
     /* Header */
    
@@ -45,19 +45,24 @@
       @apply cursor-pointer uppercase font-bold hover:underline;
     }    
 
-    .subMenu{
-      @apply w-fit p-5;
+    .submenu{
+      @apply mx-auto absolute top-20 w-full bg-white z-10 left-0 right-0 p-16 border-t border border-[#eaeaea] cursor-default max-w-[1700px];
     }
-
-    .subMenu .wrap{
-      @apply gap-5 p-10 hidden;
+    .submenu .wrap{
+      @apply flex flex-row gap-12;
     }
-    .subMenu ul{
-      @apply p-5
+    .submenu ul{
+      @apply p-5 flex flex-col w-fit;
     }
-    .menuImages{
-      @apply w-[20%] h-auto flex gap-5
+    .submenu ul li{
+      @apply w-full text-left font-normal capitalize cursor-pointer; 
     }    
+    .menuImages{
+      @apply max-w-52 max-h-52 flex gap-5;
+    }    
+    .menuImages img{
+      @apply cursor-pointer;
+    }
 
     .header-navigation {
       @apply flex items-center justify-between list-none ml-8 pl-0 py-5 text-gray-600 font-semibold;
@@ -91,11 +96,11 @@
     }
 
     .header-cart-link {
-      @apply flex items-center justify-end no-underline cursor-pointer;
+      @apply flex items-center justify-center no-underline cursor-pointer;
     }
 
     .header-cart-link svg {
-        @apply w-auto stroke-gray-500 h-4;
+        @apply w-auto stroke-black h-4;
     }
     .header-cart-link svg:hover {
         @apply  stroke-black;
@@ -104,13 +109,13 @@
         @apply  text-black;
     }
     .header-cart-link span {
-      @apply relative -top-1/4 text-gray-500;
+      @apply relative -top-[5%] text-black;
     }
     .cart-quantity-selector button svg {
-        @apply stroke-gray-500 h-6
+        @apply stroke-black h-6
     }
     .cart-remove svg {
-        @apply stroke-gray-500 h-6
+        @apply stroke-black h-6
     }  
     .cart-quantity-selector button svg:hover {
         @apply  stroke-black;
@@ -149,13 +154,17 @@
       @apply grid grid-cols-4 gap-10; 
     }
 
+    .product-grid-item .image-container img {
+      @apply transition-opacity duration-300 ease-in-out;
+    }
+
     .article-grid{
         @apply mt-12
     }
   
     .product-grid-item,
     .article-grid-item {
-      @apply bg-white pb-2;
+      @apply bg-white pb-2 rounded-md;
     }
   
     .product-grid-item img,
@@ -353,8 +362,14 @@
     }
     
     /* Search */
+    .header-options{
+      @apply flex flex-row w-28 gap-4
+    }
+    .searcher{
+      @apply flex items-center justify-end no-underline cursor-pointer w-5 text-black;
+    }
     .header-search-wrap{
-      @apply flex items-center grow;
+      @apply flex justify-center items-center absolute grow top-20 z-10 mx-auto w-full h-20 bg-white left-0 right-0 border-t border-gray-200;
     }
     .header-search-wrap svg {
       @apply w-auto stroke-gray-500 cursor-pointer ml-2;
@@ -366,8 +381,11 @@
       @apply w-[80%] h-10 border-solid border-gray-200 text-sm ml-4 rounded-md;
     }    
 
+    .search-grid{
+      @apply w-[80%] p-8 mb-8 bg-gray-100 my-0 mx-auto overflow-auto;
+    }
     .searchResults{
-      @apply flex-col justify-between absolute left-1/2 z-10 top-[10%] hidden w-screen max-w-max -translate-x-1/2 to-10% bg-white text-black flex-auto overflow-hidden rounded-3xl text-sm leading-6 shadow-lg ring-1 ring-gray-900/5;
+      @apply max-h-[540px] flex-col justify-between absolute left-0 z-10 top-40 hidden w-screen bg-white text-black  overflow-hidden text-sm leading-6 shadow-lg ring-1 ring-gray-900/5;
     }
     .searchResults li{
       @apply hover:bg-gray-50;
@@ -378,11 +396,87 @@
     .searchResults a{
       @apply flex flex-row items-center p-4;
     }
+    .resultList, .header-search-wrap, .searchResults {
+      @apply mx-auto left-0 right-0 max-w-[1700px]
+    }
+    /* Swipper */
+    .swiper-text{
+      @apply rounded-md float-right mt-[-200px] relative mr-12 bg-black bg-opacity-80 text-white p-8 text-left w-[400px] text-5xl
+    }
 
+    /*Featured section */
+
+    .featured-section{
+      @apply flex flex-row justify-center items-center gap-5
+    }
+    .featured-section img{
+      @apply w-[20%]
+    }
+    .featured-section div{
+      @apply flex flex-grow flex-col justify-center items-center text-center bg-white rounded-md p-5 gap-2 min-h-80 max-w-[25reem]
+    }
+    .featured-section h3{
+      @apply font-bold
+    }
+
+    /*Hotspot section*/
+    .hotspot-section .hotspot-img{
+      @apply mb-8 rounded-md;
+    }
+    .hotspot-text{
+      @apply rounded-md float-right mr-40 mt-[-250px] relative bg-black bg-opacity-80 text-white p-8 text-left w-[400px] font-bold text-5xl;
+    }
+    .hotspot-product{
+      @apply flex flex-row p-4 justify-between w-52 bg-white rounded-md gap-4 max-h-24;
+    }
+    .hotspot-product img{
+      @apply w-[30%] m-0;
+    }
+    .hotspot-product-info span{
+      @apply text-black;
+    }
+    .hotspot-product-info{
+      @apply flex flex-col;
+    }
+    .hotspot-product-info span:nth-child(2){
+      @apply font-bold;
+    }    
+
+    /* .hotspot-section > :nth-child(2) img {
+      @apply float-right;
+    } */
+
+    .hotspot-section > :nth-child(2) .hotspot-text {
+      @apply float-left ml-40;
+    }    
+    
+    .hotspot {
+      @apply z-10 cursor-pointer  w-6 h-6 text-purple-600;
+    }
+    .hotspots{
+      @apply z-10 mt-[-550px];
+    }
+
+    /*Newsletter */
+    .newsletter-section{
+      @apply mt-16 flex justify-center items-center bg-black text-white rounded-md;
+    }
+    .newsletter-form{
+      @apply w-[50%] flex flex-col gap-2  p-8 justify-center;
+    }
+    .newsletter-form h3{
+      @apply text-2xl font-bold;
+    }
+    .newsletter-form input{
+      @apply rounded-md text-black;
+    }
+    .newsletter-form button{
+      @apply p-2 bg-purple-700 rounded-md;
+    }
     /* Footer */
 
     .copyright{
-      @apply text-center;
+      @apply text-center p-8;
     }
     .footerMenu{
       @apply flex flex-row justify-between p-8;

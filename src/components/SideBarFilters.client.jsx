@@ -2,9 +2,9 @@
 import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon, ChevronUpIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 
-import ProductCard from './ProductGridItem.client'
+import ProductCard from './ProductCard.client'
 
 const sortOptions = [
   // { name: 'Most Popular', href: '#', current: true },
@@ -199,9 +199,9 @@ export default function SideBarFilter({data}) {
                                 <span className="font-medium text-gray-900">{filter.name}</span>
                                 <span className="ml-6 flex items-center">
                                   {open ? (
-                                    <MinusIcon className="h-5 w-5" aria-hidden="true" />
+                                    <ChevronUpIcon className="h-5 w-5" aria-hidden="true" />
                                   ) : (
-                                    <PlusIcon className="h-5 w-5" aria-hidden="true" />
+                                    <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
                                   )}
                                 </span>
                               </Disclosure.Button>
@@ -334,9 +334,9 @@ export default function SideBarFilter({data}) {
                             <span className="font-medium text-gray-900">{filter.name}</span>
                             <span className="ml-6 flex items-center">
                               {open ? (
-                                <MinusIcon className="h-5 w-5" aria-hidden="true" />
+                                <ChevronUpIcon className="h-5 w-5" aria-hidden="true" />
                               ) : (
-                                <PlusIcon className="h-5 w-5" aria-hidden="true" />
+                                <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
                               )}
                             </span>
                           </Disclosure.Button>

@@ -13,23 +13,35 @@ export const homeType = defineField({
   fields: [
     defineField({
       name: 'hero',
-      type: 'hero',
+      type: 'array',
+      of: [{type: 'hero'}],
       group: 'editorial',
     }),
     defineField({
-      name: 'modules',
+      name: 'productHotspot',
       type: 'array',
-      of: [
-        defineArrayMember({ type: 'accordion' }),
-        defineArrayMember({ type: 'callout' }),
-        defineArrayMember({ type: 'grid' }),
-        defineArrayMember({ type: 'images' }),
-        defineArrayMember({ type: 'imageWithProductHotspots', title: 'Image with Hotspots' }),
-        defineArrayMember({ type: 'instagram' }),
-        defineArrayMember({ type: 'products' }),
-      ],
+      of: [{type: 'imageWithProductHotspots'}],
+      group: 'editorial',
+    }),  
+    defineField({
+      name: 'featured',
+      type: 'array',
+      of: [{type: 'featured'}],
+      group: 'editorial',
+    }),      
+    defineField({
+      title: 'Want to add newsletter?',
+      name: 'showNewsletter',
+      type: 'boolean',
+      initialValue: false,
       group: 'editorial',
     }),
+    defineField({
+      name: 'newsletter',
+      type: 'newsletter',
+      hidden: ({parent}) => !parent.showNewsletter,
+      group: 'editorial',
+    }),    
     defineField({
       name: 'seo',
       title: 'SEO',

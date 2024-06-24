@@ -19,6 +19,8 @@ import {imageFeaturesType} from './objects/module/imageFeaturesType'
 import {imageFeatureType} from './objects/module/imageFeatureType'
 import {imageWithProductHotspotsType} from './objects/hotspot/imageWithProductHotspotsType'
 import {instagramType} from './objects/module/instagramType'
+import {newsletterType} from './objects/custom/newsletterType'
+import {featuredType} from './objects/custom/featuredType'
 import {inventoryType} from './objects/shopify/inventoryType'
 import {linkEmailType} from './objects/link/linkEmailType'
 import {linkExternalType} from './objects/link/linkExternalType'
@@ -67,6 +69,8 @@ const objects = [
   imageFeatureType,
   imageWithProductHotspotsType,
   instagramType,
+  newsletterType,
+  featuredType,
   inventoryType,
   menuLinksType,
   menuType,

@@ -2,80 +2,96 @@ import { Link } from '@shopify/hydrogen';
 import { fetchSanityData } from '../sanityData.client';
 import { useEffect, useState } from 'react';
 
-export default function NavBar({collections}){
+export default function NavBar() {
 
-  const sanityQuery = `
-    *[_type == "megaMenu"]{
-      _id,
-      title,
-      mainlink,
-      collectionLinks[]->{
-        _id,
-        "title": store.title,
-        "slug": store.slug.current,
-        "handle": store.handle,
-        "imageUrl": store.imageUrl.asset->url
-      },
-      customLink,
-      customUrl,
-      images[]{
-        _key,
-        "url": asset->url
-      }    
+  const [navigationData, setSanityData] = useState([]);
+  const [hoveredMenuId, setHoveredMenuId] = useState(null);
+
+  useEffect(() => {
+    async function getData() {
+      const sanityData = await fetchSanityData(sanityQuery);
+      setSanityData(sanityData);
     }
-  `;
+    getData();
+  }, []);
 
-    const [navigationData, setSanityData] = useState([]);
-  
-    useEffect(() => {
-      async function getData() {
-        const sanityData = await fetchSanityData(sanityQuery);
-        setSanityData(sanityData);
-      }
-      getData();
-    }, []);
-  
-    console.log('Mega menu data:')
-    console.log(navigationData)
-
-    return (
-      <div className="customNavbar">
-        <div className='mainMenu'>
-          <ul>
-            {navigationData.map((menu) => (
-              <li key={menu._id}>
-                {menu.title}
-              </li>
-            ))}
-          </ul>
-        </div>
-  
-        <div className='subMenu'>
+  return (
+    <div className="customNavbar">
+      <div className='mainMenu'>
+        <ul>
           {navigationData.map((menu) => (
-            <div className='wrap' key={menu._id} >
-              <ul>
-                {menu.collectionLinks && menu.collectionLinks.map((collection) => (
-                  <li key={collection._id}>
-                    <a href={`/collections/${collection.slug}`}>{collection.title}</a>
-                  </li>
-                ))}
-                {menu.customLink && (
-                  <li>
-                    <a href={menu.customUrl}>{menu.customLink}</a>
-                  </li>
+            <li
+              className={`menu-${menu._id}`}
+              key={menu._id}
+              onMouseEnter={() => setHoveredMenuId(menu._id)}
+              onMouseLeave={(e) => {
+                setTimeout(function(){
+                    const submenu = document.querySelector(`.submenu-${menu.id}`);
+                    const mainMenuItem = document.querySelector(`.menu-${menu.id}`);                  
+                    if (
+                      submenu && 
+                      !submenu.contains(e.relatedTarget) && 
+                      mainMenuItem && 
+                      !mainMenuItem.contains(e.relatedTarget)
+                    ) {
+                      setHoveredMenuId(null);
+                    }
+                }, 300);
+              }}
+            >
+              {menu.title}
+                {hoveredMenuId === menu._id && (
+                  <div 
+                    className={`submenu-${menu._id} submenu`}
+                    onMouseLeave={() => setHoveredMenuId(null)}               
+                    >
+                    <div className={`wrap`}>
+                      <ul>
+                        {menu.collectionLinks && menu.collectionLinks.map((collection) => (
+                          <li key={collection._id}>
+                            <a href={`/collections/${collection.slug}`}>{collection.title}</a>
+                          </li>
+                        ))}
+                        {menu.customLink && (
+                          <li>
+                            <a href={menu.customUrl}>{menu.customLink}</a>
+                          </li>
+                        )}
+                      </ul>
+                      {menu.images && (
+                        <div className="menuImages">
+                          {menu.images.map((image) => (
+                            <img key={image._key} src={image.url} alt="" />
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 )}
-              </ul>
-              {menu.images && (
-                <div className="menuImages">
-                  {menu.images.map((image) => (
-                    <img key={image._key} src={image.url} alt="" />
-                  ))}
-                </div>
-              )}
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
-    );
+    </div>
+  );
 }
 
+const sanityQuery = `
+*[_type == "megaMenu"]{
+  _id,
+  title,
+  collectionLinks[]->{
+    _id,
+    "title": store.title,
+    "slug": store.slug.current,
+    "handle": store.handle,
+    "imageUrl": store.imageUrl.asset->url
+  },
+  customLink,
+  customUrl,
+  images[]{
+    _key,
+    "url": asset->url
+  }
+}
+`;

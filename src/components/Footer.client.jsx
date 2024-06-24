@@ -49,13 +49,13 @@ export default function Footer({collections}){
     getData();
   }, []);
 
-  console.log('Store data footer:')
-  console.log(storeData.social)  
-  console.log('footer data:')
-  console.log(footerData) 
+//   console.log('Store data footer:')
+//   console.log(storeData.social)  
+//   console.log('footer data:')
+//   console.log(footerData) 
 
     return(
-        <footer>
+        <footer className="container">
             <div className="copyright">
                 <span>{storeData.copyright}</span>
             </div>

@@ -2,7 +2,7 @@ import { useShopQuery, CacheLong, gql } from '@shopify/hydrogen';
 import { Suspense } from 'react';
 
 import Layout from '../components/Layout.server';
-import ProductCard from '../components/ProductGridItem.client';
+import ProductCard from '../components/ProductCard.client';
 
 export default function Catalog() {
 
@@ -41,6 +41,17 @@ query products {
           height
           width
         }
+        images(first: 3) {  
+          edges {
+            node {
+              id
+              url
+              altText
+              width
+              height
+            }
+          }
+        }           
         variants(first: 1) {
           nodes {
             price {

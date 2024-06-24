@@ -54,6 +54,17 @@ query CollectionDetails($handle: String!) {
             height
             width
           }
+          images(first: 3) {  
+            edges {
+              node {
+                id
+                url
+                altText
+                width
+                height
+              }
+            }
+          }             
           variants(first: 1) {
             nodes {
               price {

@@ -35,11 +35,11 @@ export default function Header(){
     getData();
   }, []);
 
-  console.log('Store data:')
-  console.log(storeData)  
+  // console.log('Store data:')
+  // console.log(storeData)  
 
     return (
-        <header>
+        <header className="container">
             <div className="container header-inner">
 
                 <Link to="/" className="header-logo">
@@ -50,9 +50,10 @@ export default function Header(){
 
                 <NavBar/>                        
 
-                {/* <PredictiveSearch  /> */}
-
-                <CartDrawer />
+                <div className="header-options">
+                  <PredictiveSearch />
+                  <CartDrawer />
+                </div>                
             </div>
         </header>
     )

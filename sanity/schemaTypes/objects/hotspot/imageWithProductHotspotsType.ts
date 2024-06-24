@@ -9,6 +9,10 @@ export const imageWithProductHotspotsType = defineField({
   type: 'object',
   fields: [
     defineField({
+      name: 'text',
+      type: 'string',
+    }),
+    defineField({
       name: 'image',
       options: {hotspot: true},
       type: 'image',
