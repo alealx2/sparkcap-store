@@ -11,18 +11,21 @@ import {
 } from '@shopify/hydrogen';
 
 import { Suspense } from 'react';
+import BestSellingProductGrid from './BestSellingProductsGrid.client';
 
-export default function CartPage() {
+export default function CartPage({products}) {
+
     return (
         <Suspense>
-            <CartTable />
+            <CartTable products={products}/>
         </Suspense>
     )
 }
 
-function CartTable() {
-    const { lines, checkoutUrl, status } = useCart();
+function CartTable({products}) {
 
+    const { lines, checkoutUrl, status } = useCart();
+    
     // console.log(status);
 
     if(lines.length === 0) {
@@ -33,6 +36,7 @@ function CartTable() {
                     <p>
                         Take a look of our best seller products you might find something nice for you.
                     </p>
+                    <BestSellingProductGrid products={products}/>
                 </div>
             )
         }
@@ -48,18 +52,27 @@ function CartTable() {
                                 </CartLineProvider>
                             )
                         })}
-                        <tr>
-                            <td colSpan="2"></td>
-                            <td>Total:</td>
-                            <td><CartCost withoutTrailingZeros /></td>
-                        </tr>
-                    </tbody>
+                    </tbody>               
                 </table>
                 <div className="cart-footer">
+                <div className='total-cart-cost'>
+                        <span>Total:</span>
+                        <span><CartCost withoutTrailingZeros /></span>    
+                    </div> 
                         <Link 
                             to={checkoutUrl}
                             className="checkout-button"
-                        >Checkout</Link>
+                        >
+                            Checkout
+                        </Link>
+                </div>
+
+                <div className='recomended-products empty-cart'>
+                    <h1>You may also like</h1>
+                    <p>
+                        Combine your current cart with some of these nice options.
+                    </p>
+                    <BestSellingProductGrid products={products}/>
                 </div>
             </>
         )
@@ -75,7 +88,9 @@ function CartLineItem() {
     return (
         <tr key={lineId}>
             <td>
-                <Image className="line-item-image" data={image} />
+                <Link to={`/products/${product.handle}`}>
+                    <Image className="line-item-image" data={image} />
+                </Link>                
             </td>
             <td>
                 <Link to={`/products/${product.handle}`} className="line-item-product-title">{product.title}</Link>
@@ -86,7 +101,7 @@ function CartLineItem() {
                 </div>
                 <Money withoutTrailingZeros data={merchandise.priceV2} />
             </td>
-            <td>
+            <td className='short-td'>
                 <div className="cart-quantity-selector">
                     <CartLineQuantityAdjustButton adjust="decrease">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

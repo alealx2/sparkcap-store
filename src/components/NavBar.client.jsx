@@ -70,6 +70,9 @@ export default function NavBar() {
                 )}
             </li>
           ))}
+          <li>
+            <a href="/Blog">Blog</a>
+          </li>
         </ul>
       </div>
     </div>

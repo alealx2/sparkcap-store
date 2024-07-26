@@ -111,6 +111,9 @@
     .header-cart-link span {
       @apply relative -top-[5%] text-black;
     }
+    #qty-selector{
+      @apply border border-solid border-black py-0 px-2 max-w-40 bg-transparent;
+    }
     .cart-quantity-selector button svg {
         @apply stroke-black h-6
     }
@@ -161,7 +164,10 @@
     .article-grid{
         @apply mt-12
     }
-  
+    .article-text{
+      @apply p-4;
+    }
+
     .product-grid-item,
     .article-grid-item {
       @apply bg-white pb-2 rounded-md;
@@ -172,10 +178,12 @@
       @apply object-cover object-center w-full h-full;
     }
   
-    .product-grid-item-title, .article-grid-item-title {
-      @apply mb-5 font-semibold pl-5 sm:pl-2;
+    .product-grid-item-title {
+      @apply mb-5 font-semibold pl-5 sm:pl-2 text-left;
     }
-  
+    .article-grid-item-title {
+      @apply mb-5 font-semibold;
+    }
     .product-grid-prices {
       @apply flex gap-5 font-medium pl-5 sm:pl-2;
     }
@@ -191,41 +199,69 @@
     .image-container {
       @apply block;
     }
-      
-    .product-gallery img {
-        @apply h-400 w-full;
-    }
-      
-    .product-gallery img {
-      @apply h-500 w-full;
-    }
 
     /* Product page */
-    .product-page {
+    .product-sec {
       @apply flex;
     }
     .product-page-item{
-        @apply flex;
+        @apply flex gap-12 mt-20;
     }
+
+    .product-gallery-image {
+      @apply cursor-zoom-in;
+    }    
+    .product-gallery{
+        @apply w-full flex flex-col gap-5;
+    }
+      
+    .product-gallery img {
+      @apply w-full;
+    }
+
     .product-page-item-info{
-        @apply mt-20;
+        @apply w-full;
+    }
+    .product-page-item-info div{
+      @apply mb-4;
     }
     .product-page-item .product-page-image {
       @apply object-cover w-auto h-[600px] mix-blend-multiply;
     }
-  
+    .product-title{
+      @apply text-[2.5rem] w-full
+    }
     .product-compare-at-price {
       @apply line-through;
     }
-    
+    .product-page-price{
+      @apply font-bold text-[1.5rem];
+    }
+    .qtySelector{
+      @apply text-center bg-transparent border-none w-full
+    }
+    .is-sticky{
+      @apply sticky top-5      
+    }
+    .product-slides{
+      @apply flex-1 relative flex flex-col gap-10
+    }
+    .related-products{
+      @apply text-center my-12;
+    }        
     /* Cart Page */
-
+    .short-td{
+      @apply w-[100px];
+    }
+    .total-cart-cost{
+      @apply flex mt-4 mr-8 gap-5 font-bold;
+    }
     .cart-table {
-      @apply w-full p-5 mt-5;
+      @apply w-full p-5 mt-8 ml-auto mr-auto;
     }
 
     .cart-table tr {
-        @apply bg-white my-5;
+        @apply bg-white my-5 border-b border-gray-200;
       }    
 
     .cart-table tr:last-child {
@@ -255,7 +291,7 @@
         @apply font-medium
     }
     .line-item-image {
-      @apply w-auto h-96 mix-blend-multiply;
+      @apply w-auto h-40 mix-blend-multiply;
     }
   
     .line-item-variant span:not(:last-child) {
@@ -287,11 +323,11 @@
     }
   
     .product-option-name {
-      @apply font-bold;
+      @apply font-bold mb-4;
     }
   
     .product-option-value {
-      @apply inline-block;
+      @apply inline-block border-gray-950 py-2 px-4 border-solid border cursor-pointer;
     }
     .product-option-value label{
         @apply cursor-pointer;
@@ -300,7 +336,7 @@
         @apply font-semibold;
     }    
     .product-option-value:not(last-child) {
-      @apply mr-10;
+      @apply mr-2;
     }
   
     .product-option-value input[type="radio"] {
@@ -321,7 +357,7 @@
     }
   
     article img {
-      @apply max-w-full h-auto;
+      @apply max-w-full h-auto m-auto;
     }
   
     .article-page {
@@ -339,7 +375,16 @@
     .article-body ul {
       @apply text-left;
     }
-  
+    
+    /*Collection page*/
+    .collection-banner{
+      @apply h-60 w-full mb-8;
+    }
+
+    .collection-banner img{
+      @apply w-full h-full bg-no-repeat bg-center object-cover;
+    }
+
     /* Collection grid */
     .collections-grid {
         @apply grid grid-cols-3 gap-10; 
@@ -385,7 +430,7 @@
       @apply w-[80%] p-8 mb-8 bg-gray-100 my-0 mx-auto overflow-auto;
     }
     .searchResults{
-      @apply max-h-[540px] flex-col justify-between absolute left-0 z-10 top-40 hidden w-screen bg-white text-black  overflow-hidden text-sm leading-6 shadow-lg ring-1 ring-gray-900/5;
+      @apply max-h-[550px] flex-col justify-between absolute left-0 z-10 top-40 hidden w-screen bg-white text-black  overflow-hidden text-sm leading-6 shadow-lg ring-1 ring-gray-900/5;
     }
     .searchResults li{
       @apply hover:bg-gray-50;

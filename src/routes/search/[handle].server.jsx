@@ -2,7 +2,6 @@ import { useShopQuery, gql, CacheLong, useRouteParams, Seo } from "@shopify/hydr
 import { Suspense } from "react";
 
 import Layout from "../../components/Layout.server";
-import ProductSearchGrid from '../../components/ProductSearchGrid.client'
 import ProductCard from "../../components/ProductCard.client";
 
 export default function Search(){

@@ -7,16 +7,6 @@ import { Link } from "@shopify/hydrogen";
 
 export default function Header(){
 
-  // Fetch predictive search data
-  // const searchData = useShopQuery({
-  //   query: PREDICTIVE_SEARCH_QUERY,   
-  //   variables: {
-  //     searchTerm: "" 
-  //   },
-  // });
-
-  // const { data: {products: { nodes: searchResults } } } = searchData;
-
   //Fetch store brand data from sanity
   const sanityQuery = `
     *[_type == "storeInfo"]{
@@ -58,47 +48,3 @@ export default function Header(){
         </header>
     )
 }
-
-// Fetch predictive search info
-// const PREDICTIVE_SEARCH_QUERY = gql`
-//   query PredictiveSearch($searchTerm: String!) {
-//     products(query: $searchTerm, first: 5) {    
-//       nodes {
-//         id
-//         title
-//         descriptionHtml
-//         media(first: 1) {
-//           nodes {
-//             ... on MediaImage {
-//               id
-//               image {
-//                 url
-//                 width
-//                 height
-//                 altText
-//               }
-//             }
-//           }
-//         }
-//         variants(first: 1) {
-//           nodes {
-//             id
-//             availableForSale
-//             price {
-//               amount
-//               currencyCode
-//             }
-//             compareAtPrice {
-//               amount
-//               currencyCode
-//             }
-//             selectedOptions {
-//               name
-//               value
-//             }
-//           }
-//         }
-//       }  
-//     }
-//   }
-// `;

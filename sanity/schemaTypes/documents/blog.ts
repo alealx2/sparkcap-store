@@ -18,6 +18,11 @@ export const blogType = defineField({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'description',
+      group: 'editorial',
+      type: 'string',
+    }),    
+    defineField({
       name: 'slug',
       group: 'editorial',
       type: 'slug',
@@ -41,6 +46,18 @@ export const blogType = defineField({
       type: 'portableText',
       group: 'editorial',
     }),
+    defineField({
+      name: 'publishDate',
+      type: 'datetime',
+      title: 'Publish Date',
+      group: 'editorial',
+    }),
+    defineField({
+      name: 'author',
+      type: 'string',
+      title: 'Author',
+      group: 'editorial',
+    }),        
     defineField({
       name: 'seo',
       title: 'SEO',

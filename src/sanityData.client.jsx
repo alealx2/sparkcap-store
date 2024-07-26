@@ -1,8 +1,10 @@
 import {client} from '../lib/sanity.client';
 
-export async function fetchSanityData(query) {
+
+export async function fetchSanityData(query, handle = null) {
   try {
-    const data = await client.fetch(query);
+    const params = handle ? { slug: handle } : {};
+    const data = await client.fetch(query, params);
     return data;
   } catch (error) {
     console.error('Sanity fetch error:', error);
