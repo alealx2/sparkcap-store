@@ -31,7 +31,8 @@ export default function SwiperBanner(){
             pagination="true"      
             speed="500" 
             loop="true" 
-            cssMode="true"                  
+            cssMode="true" 
+            autoplay="true"                             
         >
             {swiperData ? (
                 swiperData.hero.map((heroItem) => (
