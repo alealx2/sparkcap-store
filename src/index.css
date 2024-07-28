@@ -313,7 +313,9 @@
     .cart-quantity-selector span {
       @apply w-full md:min-w-20 min-w-4 text-center select-none font-bold
     }
-  
+    .cartdrawer-line span{
+      @apply min-w-20
+    }
     .cart-quantity-selector button {
       @apply relative appearance-none border-none text-center p-0 m-0  outline-none flex items-center cursor-pointer;
     }

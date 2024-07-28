@@ -195,7 +195,7 @@ function CartDrawerItem(){
                     ))}
 
                 </div>
-                <div className="flex flex-1 items-end justify-between text-sm">
+                <div className="cartdrawer-line flex flex-1 items-end justify-between text-sm">
 
                     <div className="cart-quantity-selector mt-2">
                         <CartLineQuantityAdjustButton adjust="decrease">

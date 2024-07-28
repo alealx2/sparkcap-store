@@ -17,8 +17,8 @@ export default defineConfig({
   name: 'default',
   title: 'sparkcap',
 
-  projectId: '500c01m0',
-  dataset: 'production',
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID,
+  dataset: process.env.SANITY_STUDIO_DATA_SET,
 
   plugins: [
     structureTool({structure}),
