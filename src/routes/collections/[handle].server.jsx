@@ -1,4 +1,4 @@
-import { useShopQuery, CacheLong, gql, useRouteParams } from '@shopify/hydrogen';
+import { useShopQuery, CacheLong, gql, useRouteParams, Image } from '@shopify/hydrogen';
 import { Suspense } from 'react';
 
 import Layout from '../../components/Layout.server';
@@ -24,6 +24,13 @@ export default function Collection() {
         <Layout>
             <Suspense>
                 <div className="catalog-page container">
+                    <div className='collection-banner'>
+                      <Image 
+                        key={collection.image.id}
+                        data={collection.image}
+                        alt={collection.image.altText}
+                      />                                       
+                    </div>
                     <h1>{collection.title}</h1>
                     <SideBarFilter data={nodes} />
                 </div>
@@ -38,6 +45,14 @@ query CollectionDetails($handle: String!) {
       id
       title
       description
+      handle
+      image{
+        id
+        url
+        altText  
+        height
+        width       
+      }
       seo {
           description
           title
@@ -54,6 +69,17 @@ query CollectionDetails($handle: String!) {
             height
             width
           }
+          images(first: 4) {  
+            edges {
+              node {
+                id
+                url
+                altText
+                width
+                height
+              }
+            }
+          }             
           variants(first: 1) {
             nodes {
               price {

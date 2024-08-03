@@ -2,13 +2,13 @@ import { useShopQuery, gql, CacheLong, useRouteParams, Seo } from "@shopify/hydr
 import { Suspense } from "react";
 
 import Layout from "../../components/Layout.server";
-import ProductSearchGrid from '../../components/ProductSearchGrid.client'
+import ProductCard from "../../components/ProductCard.client";
 
 export default function Search(){
 
     const { handle } = useRouteParams();
 
-    const { data: { products: {nodes: products} } } = useShopQuery({
+    const { data: { products: {nodes: products } } } = useShopQuery({
         query: SEARCH_QUERY,
         cache: CacheLong(),
         preload: true,        
@@ -29,8 +29,10 @@ export default function Search(){
                 </h1>
 
             <div className="product-page container">
-                <div className="product-grid search-grid">
-                  <ProductSearchGrid products={products}/>
+                <div className="product-grid">
+                    {products.map((product) => (
+                        <ProductCard product={product}></ProductCard>
+                    ))}                
                 </div>
             </div>
         </Layout>
@@ -41,28 +43,27 @@ const SEARCH_QUERY = gql`
 query Search($handle: String!) {
     products(query: $handle, first: 5) {    
         nodes {
-            id
             title
-            descriptionHtml
             handle
-            media(first: 1) {
-                nodes {
-                    ... on MediaImage {
-                        id
-                        image {
+            featuredImage {
+                url
+                altText
+                height
+                width
+            }
+            images(first: 3) {  
+                edges {
+                    node {
                         id
                         url
+                        altText
                         width
                         height
-                        altText
-                        }
                     }
                 }
-            }
+            }      
             variants(first: 5) {
                 nodes {
-                    id
-                    availableForSale
                     price {
                         amount
                         currencyCode
@@ -71,13 +72,9 @@ query Search($handle: String!) {
                         amount
                         currencyCode
                     }
-                    selectedOptions {
-                        name
-                        value
-                    }
                 }
-            }   
-        }             
+            }
+        }                   
     }  
 }
 `;

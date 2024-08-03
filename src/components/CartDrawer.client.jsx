@@ -116,6 +116,12 @@ export default function CartDrawer({data}) {
                                 >
                                   Checkout
                                 </a>
+                                <a
+                                  href='/cart'
+                                  className="flex items-center justify-center rounded-md border border-transparent bg-black mt-4 px-6 py-3 text-base font-medium text-white shadow-sm"
+                                >
+                                  Go to full cart
+                                </a>                                
                               </div>
                               <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                                 <p>
@@ -157,11 +163,13 @@ function CartDrawerItem(){
             <li key={lineId} line={line} className="flex py-6">
                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                 
-                <Image  
-                    className="h-full w-full object-cover object-center" 
-                    alt={imgAlttext}
-                    data={image} 
-                />
+                <Link to={`/products/${product.handle}`}>
+                  <Image  
+                      className="h-full w-full object-cover object-center" 
+                      alt={imgAlttext}
+                      data={image} 
+                  />
+                </Link>                       
 
                 </div>
 
@@ -174,7 +182,7 @@ function CartDrawerItem(){
                     </Link>                       
                     </h3>
 
-                    <CartLineQuantityAdjustButton as="div" className='cart-remove' adjust='remove'>
+                        <CartLineQuantityAdjustButton as="div" className='cart-remove' adjust='remove'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                             </svg>
@@ -183,13 +191,13 @@ function CartDrawerItem(){
                     </div>
 
                     {(selectedOptions || []).map(option => (
-                        <p className="mt-1 text-sm text-gray-500" key={option.name}>{option.name}: {option.value}</p>
+                        <p className="mb-0 mt-1 text-sm text-gray-500" key={option.name}>{option.name}: {option.value}</p>
                     ))}
 
                 </div>
-                <div className="flex flex-1 items-end justify-between text-sm">
+                <div className="cartdrawer-line flex flex-1 items-end justify-between text-sm">
 
-                    <div className="cart-quantity-selector">
+                    <div className="cart-quantity-selector mt-2">
                         <CartLineQuantityAdjustButton adjust="decrease">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
