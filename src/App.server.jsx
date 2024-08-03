@@ -4,9 +4,6 @@ import {Router, FileRoutes, ShopifyProvider, Route, CartProvider} from '@shopify
 import {Suspense} from 'react';
 import Layout from './components/Layout.server';
 
-import { configDotenv } from 'dotenv';
-configDotenv();
-
 function App() {
   return (
     <Suspense fallback={null}>

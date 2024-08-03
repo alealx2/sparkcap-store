@@ -1,27 +1,16 @@
 import { Link } from '@shopify/hydrogen';
 import { fetchSanityData } from '../sanityData.client';
 import { Fragment, useEffect, useState } from 'react';
-
+import { useQuery } from 'react-query';
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, ChevronUpIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 
 
-export default function NavBar() {
+export default function NavBar({navigationData}) {
 
-  const [navigationData, setSanityData] = useState([]);
   const [hoveredMenuId, setHoveredMenuId] = useState(null);
-
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
-
-  useEffect(() => {
-    async function getData() {
-      const sanityData = await fetchSanityData(sanityQuery);
-      setSanityData(sanityData);
-    }
-    getData();
-  }, []);
 
   return (
     <div className="customNavbar">
@@ -188,23 +177,3 @@ export default function NavBar() {
     </div>
   );
 }
-
-const sanityQuery = `
-*[_type == "megaMenu"]{
-  _id,
-  title,
-  collectionLinks[]->{
-    _id,
-    "title": store.title,
-    "slug": store.slug.current,
-    "handle": store.handle,
-    "imageUrl": store.imageUrl.asset->url
-  },
-  customLink,
-  customUrl,
-  images[]{
-    _key,
-    "url": asset->url
-  }
-}
-`;

@@ -7,44 +7,66 @@ import { Link } from "@shopify/hydrogen";
 
 export default function Header(){
 
-  //Fetch store brand data from sanity
-  const sanityQuery = `
-    *[_type == "storeInfo"]{
-    name,
-    "mainLogoUrl": mainLogo.asset->url,
-    }
-  `;  
+  const [sanityData, setSanityData] = useState([]);
 
-  const [storeData, setSanityData] = useState([]);
-  
   useEffect(() => {
     async function getData() {
-      const sanityData = await fetchSanityData(sanityQuery);
-      setSanityData(sanityData[0]);
+      const data = await fetchSanityData(sanityQuery);
+      setSanityData(data);
     }
     getData();
   }, []);
 
   // console.log('Store data:')
-  // console.log(storeData)  
+  //console.log(sanityData)  
 
     return (
         <header className="container">
+          {sanityData.storeInfo && sanityData.megaMenu ? (
             <div className="container header-inner">
+              <Link to="/" className="header-logo">
+                  {sanityData.storeInfo[0].mainLogoUrl && (
+                      <img src={sanityData.storeInfo[0].mainLogoUrl} alt={sanityData.storeInfo[0].name} title={sanityData.storeInfo[0].name}/>
+                  )}
+              </Link>
 
-                <Link to="/" className="header-logo">
-                    {storeData.mainLogoUrl && (
-                        <img src={storeData.mainLogoUrl} alt={storeData.name} title={storeData.name}/>
-                    )}
-                </Link>
+              <NavBar navigationData={sanityData.megaMenu}/>                        
 
-                <NavBar/>                        
-
-                <div className="header-options">
-                  <PredictiveSearch />
-                  <CartDrawer />
-                </div>                
+              <div className="header-options">
+                <PredictiveSearch />
+                <CartDrawer />
+              </div>                
             </div>
+          ):(
+            // <p className="text-center"> You must configure header logo and menu navigation from sanity cms </p>
+            null
+          )}
         </header>
     )
 }
+
+const sanityQuery = `
+{
+  "storeInfo": *[_type == "storeInfo"]{
+    name,
+    "mainLogoUrl": mainLogo.asset->url,
+  },
+  "megaMenu": *[_type == "megaMenu"]{
+    _id,
+    title,
+    collectionLinks[]->{
+      _id,
+      "title": store.title,
+      "slug": store.slug.current,
+      "handle": store.handle,
+      "imageUrl": store.imageUrl.asset->url
+    },
+    customLink,
+    customUrl,
+    images[]{
+      _key,
+      "url": asset->url
+    }
+  }
+}
+`;  
