@@ -34,11 +34,14 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-
+      
       - name: Install dependencies
         run: npm ci
 
-      - name: Build and Publish to Oxygen
-        run: npx shopify hydrogen deploy
-        env:
-          SHOPIFY_HYDROGEN_DEPLOYMENT_TOKEN: ${{ secrets.OXYGEN_DEPLOYMENT_TOKEN_1000019537 }}
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to Oxygen using oxygenctl-action
+        uses: oxygenctl-action@v4.9.0
+        with:
+          api-key: ${{ secrets.OXYGEN_DEPLOYMENT_TOKEN_1000019537 }}
