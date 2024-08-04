@@ -15,6 +15,7 @@
   "devDependencies": {
     "@shopify/cli": "3.10.1",
     "@shopify/cli-hydrogen": "3.10.1",
+    "@shopify/mini-oxygen": "^3.0.4",
     "@tailwindcss/forms": "^0.5.7",
     "autoprefixer": "^10.4.17",
     "postcss": "^8.4.33",
